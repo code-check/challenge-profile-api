@@ -5,7 +5,7 @@ var
     spec = require("api-first-spec"),
     config = require("./config/config.json"),
     fixtures = new (require("sql-fixtures"))(config.database),
-    crypto = require('crypto'),
+    crypto = require('crypto');
 
 var API = spec.define({
     "endpoint": "api/users/[id]",
@@ -53,7 +53,7 @@ var API = spec.define({
             "birthday": {
                 "required": true,
                 "format": "YYYY-MM-DD"
-            }
+            },
             "result": {
                 "required": true
             },
@@ -71,7 +71,7 @@ describe("update", function () {
 
     it("id not present", function (done) {
         host.api(API).params({
-            "id": 32
+            "id": 32,
             "username": "John Smith"
         }).success(function (data, res) {
             assert.equal(data.code, 400);
@@ -98,7 +98,7 @@ describe("update", function () {
         host.api(API).params({
             "id": 6,
             "username": "Clark",
-            "password" = crypto.SHA1("testpassword");
+            "password": crypto.SHA1("testpassword"),
             "birthday": "1990-04-17"
         }).success(function (data, res) {
             assert.equal(data.code, 200);

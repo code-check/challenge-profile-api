@@ -4,7 +4,7 @@ var
     assert = require("chai").assert,
     spec = require("api-first-spec"),
     config = require("./config/config.json"),
-    fixtures = new (require("sql-fixtures"))(config.database),
+    fixtures = new (require("sql-fixtures"))(config.database);
 
 var API = spec.define({
     "endpoint": "api/users/[id]",

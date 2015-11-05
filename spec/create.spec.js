@@ -5,7 +5,7 @@ var
     spec = require("api-first-spec"),
     config = require("./config/config.json"),
     fixtures = new (require("sql-fixtures"))(config.database),
-    crypto = require('crypto'),
+    crypto = require('crypto');
 
 var API = spec.define({
     "endpoint": "api/users",
@@ -68,7 +68,7 @@ describe("create", function () {
     it("invalid email", function (done) {
         host.api(API).params({
             "username": "Test",
-            "password" = crypto.SHA1("123abc!");
+            "password": crypto.SHA1("123abc!"),
             "email": "invalid",
             "birthday": "2000-04-17"
         }).success(function (data, res) {
@@ -82,7 +82,7 @@ describe("create", function () {
     it("invalid Birthday", function (done) {
         host.api(API).params({
             "username": "Ted",
-            "password" = crypto.SHA1("password!");
+            "password": crypto.SHA1("password!"),
             "email": "user7@test.com",
             "birthday": "2030-04-17"
         }).success(function (data, res) {
@@ -96,7 +96,7 @@ describe("create", function () {
     it("user already present", function (done) {
         host.api(API).params({
             "username": "Bruce Wayne",
-            "password" = crypto.SHA1("password");
+            "password": crypto.SHA1("password"),
             "email": "user5@test.com",
             "birthday": "2000-04-17"
         }).success(function (data, res) {
@@ -110,7 +110,7 @@ describe("create", function () {
     it("success", function (done) {
         host.api(API).params({
             "username": "Peter Parker",
-            "password" = crypto.SHA1("123abc!");
+            "password": crypto.SHA1("123abc!"),
             "email": "test@test.com",
             "birthday": "2000-04-17"
         }).success(function (data, res) {
