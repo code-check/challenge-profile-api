@@ -13,7 +13,7 @@ The API will have 4 options for managing challenges;
  - The database used is SQLite, the file should be [profileChallenge.db](./sql/profileChallenge.db)
  - Any data in the body, either request or response, should be JSON 
 
- ## Test
+## Test
 - We want you to implement some REST APIs by using any languages and frameworks.
 - You can see the specification of APIs in [spec](spec) directory.
   - These specs are written with [api-first-spec](https://github.com/shunjikonishi/api-first-spec), and has some API tests.
