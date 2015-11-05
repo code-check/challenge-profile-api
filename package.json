@@ -1,0 +1,24 @@
+{
+  "name": "challenge-profile-api",
+  "version": "0.0.1",
+  "description": "Challenge Profile API",
+  "scripts": {
+    "test": "mocha spec/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-check/challenge-profile-api.git"
+  },
+  "author": "givery Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/code-check/challenge-profile-api/issues"
+  },
+  "homepage": "https://github.com/code-check/challenge-profile-api",
+  "devDependencies": {
+    "api-first-spec": "^0.1.7",
+    "chai": "^2.2.0",
+    "sqlite3": "^3.1.0",
+    "sql-fixtures": "^0.9.0"
+  }
+}
