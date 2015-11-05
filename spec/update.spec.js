@@ -5,10 +5,10 @@ var
     spec = require("api-first-spec"),
     config = require("./config/config.json"),
     fixtures = new (require("sql-fixtures"))(config.database),
-    crypto = require('crypto');
+    crypto = require('crypto-js');
 
 var API = spec.define({
-    "endpoint": "api/users/[id]",
+    "endpoint": "/api/users/[id]",
     "method": "PUT",
     "request": {
         "contentType": spec.ContentType.JSON,

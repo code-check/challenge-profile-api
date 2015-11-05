@@ -7,7 +7,7 @@ var
     fixtures = new (require("sql-fixtures"))(config.database);
 
 var API = spec.define({
-    "endpoint": "api/users/[id]",
+    "endpoint": "/api/users/[id]",
     "method": "GET",
     "request": {
         "contentType": spec.ContentType.JSON,
