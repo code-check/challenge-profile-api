@@ -3,37 +3,27 @@
 var
     assert = require("chai").assert,
     spec = require("api-first-spec"),
-    config = require("./config/config.json"),
-    fixtures = new (require("sql-fixtures"))(config.database);
+    config = require("./config/config.json");
 
 var API = spec.define({
     "endpoint": "/api/users/[id]",
     "method": "DELETE",
     "request": {
-        "contentType": spec.ContentType.JSON,
+        "contentType": spec.ContentType.URLENCODED,
     },
     "response": {
+        "strict": true,
         "contentType": spec.ContentType.JSON,
         "data": {
             "code": "int",
-            "username": "string",
-            "result": "boolean",
-            "reason": "string"
+            "result": "boolean"
         },
         "rules": {
             "code": {
                 "required": true
             },
-            "username": {
-                "required": true
-            },
             "result": {
                 "required": true
-            },
-            "reason": {
-                "required": function (data) {
-                    return !data.result;
-                }
             }
         }
     }
@@ -45,8 +35,8 @@ describe("delete", function () {
     it("invalid Id", function (done) {
         host.api(API).params({
             "id": 10
-        }).success(function (data, res) {
-            assert.equal(data.code, 400);
+        }).notFound(function (data, res) {
+            assert.equal(data.code, 404);
             assert.equal(data.result, false);
             done();
         });
@@ -58,7 +48,6 @@ describe("delete", function () {
         }).success(function (data, res) {
             assert.equal(data.code, 200);
             assert.equal(data.result, true);
-            assert.equal(data.username, "John Smith");
             done();
         });
     });
