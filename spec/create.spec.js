@@ -4,22 +4,21 @@ var
     assert = require("chai").assert,
     spec = require("api-first-spec"),
     config = require("./config/config.json"),
-    fixtures = new (require("sql-fixtures"))(config.database),
     crypto = require('crypto-js');
 
 var API = spec.define({
     "endpoint": "/api/users",
     "method": "POST",
     "request": {
-        "contentType": spec.ContentType.JSON,
+        "contentType": spec.ContentType.URLENCODED,
         "params": {
-            "username": "string",
+            "name": "string",
             "password": "string",
             "email": "string",
             "birthday": "date"
         },
         "rules": {
-            "username": {
+            "name": {
                 "required": true
             },
             "password": {
@@ -36,27 +35,18 @@ var API = spec.define({
         }
     },
     "response": {
+        "strict": true,
         "contentType": spec.ContentType.JSON,
         "data": {
             "code": "int",
-            "username": "string",
-            "result": "boolean",
-            "reason": "string"
+            "result": "boolean"
         },
         "rules": {
             "code": {
                 "required": true
             },
-            "username": {
-                "required": true
-            },
             "result": {
                 "required": true
-            },
-            "reason": {
-                "required": function (data) {
-                    return !data.result;
-                }
             }
         }
     }
@@ -66,57 +56,54 @@ describe("create", function () {
     var host = spec.host(config.host);
 
     it("invalid email", function (done) {
+        console.log("In create invalid email");
         host.api(API).params({
-            "username": "Test",
+            "name": "Test",
             "password": crypto.SHA1("123abc!"),
             "email": "invalid",
             "birthday": "2000-04-17"
-        }).success(function (data, res) {
+        }).badRequest(function (data, res) {
             assert.equal(data.code, 400);
             assert.equal(data.result, false);
-            assert.equal(data.username, "Test");
             done();
         });
     });
 
     it("invalid Birthday", function (done) {
         host.api(API).params({
-            "username": "Ted",
+            "name": "Ted",
             "password": crypto.SHA1("password!"),
             "email": "user7@test.com",
             "birthday": "2030-04-17"
-        }).success(function (data, res) {
+        }).badRequest(function (data, res) {
             assert.equal(data.code, 400);
             assert.equal(data.result, false);
-            assert.equal(data.username, "Bruce Wayne");
             done();
         });
     });
 
     it("user already present", function (done) {
         host.api(API).params({
-            "username": "Bruce Wayne",
+            "name": "Bruce Wayne",
             "password": crypto.SHA1("password"),
             "email": "user5@test.com",
             "birthday": "2000-04-17"
-        }).success(function (data, res) {
-            assert.equal(data.code, 409);
+        }).badRequest(function (data, res) {
+            assert.equal(data.code, 400);
             assert.equal(data.result, false);
-            assert.equal(data.username, "Bruce Wayne");
             done();
         });
     });
 
     it("success", function (done) {
         host.api(API).params({
-            "username": "Peter Parker",
+            "name": "Peter Parker",
             "password": crypto.SHA1("123abc!"),
             "email": "test@test.com",
             "birthday": "2000-04-17"
         }).success(function (data, res) {
             assert.equal(data.code, 200);
             assert.equal(data.result, true);
-            assert.equal(data.username, "Peter Parker");
             done();
         });
     });

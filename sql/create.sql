@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   birthday date NOT NULL
 );
 
-DELETE FROM table_name;
+DELETE FROM users;
 
 INSERT INTO users (id, name, password, email, birthday) VALUES (1, 'John Smith',    '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'user1@test.com', 1991-04-17);
 INSERT INTO users (id, name, password, email, birthday) VALUES (2, 'Taro Yamada',   '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'user2@test.com', 1989-04-17);
