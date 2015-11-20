@@ -2,8 +2,8 @@
     "editable": [
         "config.json"
     ],
+    "allowNewFile": true, 
     "excludes": [
-        ".gitignore",
         "challenge.json"
     ],
     "test": "mocha spec/*"
