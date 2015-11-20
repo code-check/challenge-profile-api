@@ -4,7 +4,8 @@
     ],
     "allowNewFile": true, 
     "excludes": [
-        "challenge.json"
+        "challenge.json",
+        "package.json"
     ],
     "test": "mocha spec/*"
 }
