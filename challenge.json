@@ -1,6 +1,6 @@
 {
     "editable": [
-        "config.json",
+        "config.json"
     ],
     "excludes": [
         ".gitignore",
