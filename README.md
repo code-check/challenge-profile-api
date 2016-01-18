@@ -1,5 +1,7 @@
 # Profile API
 
+[![Join the chat at https://gitter.im/givery-technology/challenge-profile-api](https://badges.gitter.im/givery-technology/challenge-profile-api.svg)](https://gitter.im/givery-technology/challenge-profile-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The goal of this challenge is to perform CRUD operations on user profile using RESTful API
 
 The API will have 4 options for managing challenges;
